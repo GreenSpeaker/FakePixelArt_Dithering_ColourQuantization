@@ -183,7 +183,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Colours on screen:
 
-    1124864
+    4
 
 
     Dither Spread:
@@ -707,8 +707,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c371d3b5d70abe409ecc0bbd97fcc94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ditherMaterial: {fileID: 2100000, guid: ce8b9b7457b8131438d7b491ff5f2d16, type: 2}
-  ColourRange: 104
+  ditherMaterial: {fileID: 2100000, guid: b790fa94afe86654cbd3471f4fb03da3, type: 2}
+  ColourRange: 2
   DitherSpread: 1
   downSampleAmount: 2
   AddDither: 1
