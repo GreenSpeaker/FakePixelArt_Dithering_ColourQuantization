@@ -25,6 +25,8 @@ Shader "Custom/Dithering"
 
             int _ColourRange;
 
+            float4 _ColourPaletteRange[4];
+
             static const int bayer2[2 * 2] = {
                 0, 2,
                 3, 1
