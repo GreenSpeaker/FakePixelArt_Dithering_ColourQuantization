@@ -17,9 +17,6 @@ public class DitherColourImageEffect : MonoBehaviour
 
     [SerializeField] private StatsDisplay statsDisplay;
 
-    [SerializeField] private List<Color> coloursForPalette = new(); 
-
-
     void OnRenderImage(RenderTexture source, RenderTexture destination)
     {
         var width = source.width >> downSampleAmount;
@@ -39,7 +36,7 @@ public class DitherColourImageEffect : MonoBehaviour
 
         ditherMaterial.SetInt("_ColourRange", ColourRange);
         ditherMaterial.SetFloat("_Spread", DitherSpread);
-        ditherMaterial.SetVectorArray("_ColourPaletteRange", coloursForPalette.Select(color => (Vector4)color).ToArray());
+        
         Graphics.Blit(tempTexture, destination, ditherMaterial);
 
         tempTexture.Release();

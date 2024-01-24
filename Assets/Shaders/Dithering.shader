@@ -3,6 +3,7 @@ Shader "Custom/Dithering"
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
+        _PaletteTexture ("Palette Texture", 2D) = "white" {}
     }
     SubShader
     {
@@ -25,7 +26,7 @@ Shader "Custom/Dithering"
 
             int _ColourRange;
 
-            float4 _ColourPaletteRange[4];
+            sampler2D _PaletteTexture;
 
             static const int bayer2[2 * 2] = {
                 0, 2,
@@ -100,6 +101,12 @@ Shader "Custom/Dithering"
                 finalCol.r = floor((finalCol.r * (numColours - 1)) + 0.5f) / (numColours - 1);
                 finalCol.g = floor((finalCol.g * (numColours - 1)) + 0.5f) / (numColours - 1);
                 finalCol.b = floor((finalCol.b * (numColours - 1)) + 0.5f) / (numColours - 1);
+
+                float greyScale = (finalCol.r + finalCol.g + finalCol.b) /3;
+
+                finalCol.rgb = saturate(greyScale);
+
+                finalCol.rgb = tex2D(_PaletteTexture, float2(greyScale, 0));
             
                 return finalCol;
             }
