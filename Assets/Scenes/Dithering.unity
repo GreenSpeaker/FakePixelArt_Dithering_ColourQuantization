@@ -704,7 +704,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1554418797}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9a040af7741c6242be7b337a567051d, type: 3}
+  m_Script: {fileID: 11500000, guid: 8c371d3b5d70abe409ecc0bbd97fcc94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ditherMaterial: {fileID: 2100000, guid: ce8b9b7457b8131438d7b491ff5f2d16, type: 2}
