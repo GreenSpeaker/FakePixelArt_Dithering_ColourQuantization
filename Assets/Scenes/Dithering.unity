@@ -183,17 +183,17 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Colours on screen:
 
-    8
+    1124864
 
 
     Dither Spread:
 
-    0
+    1
 
 
     DownSampling:
 
-    0'
+    2'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -708,9 +708,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ditherMaterial: {fileID: 2100000, guid: ce8b9b7457b8131438d7b491ff5f2d16, type: 2}
-  ColourRange: 2
-  DitherSpread: 0
-  downSampleAmount: 0
+  ColourRange: 104
+  DitherSpread: 1
+  downSampleAmount: 2
   AddDither: 1
   filterMode: 0
   statsDisplay: {fileID: 1554418802}
