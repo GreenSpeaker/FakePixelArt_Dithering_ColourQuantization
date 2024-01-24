@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [ExecuteInEditMode]
-public class ImageEffect : MonoBehaviour
+public class DitherColourImageEffect : MonoBehaviour
 {
     [SerializeField] Material ditherMaterial;
     [SerializeField] [Range(2, 255)] int ColourRange = 2;
