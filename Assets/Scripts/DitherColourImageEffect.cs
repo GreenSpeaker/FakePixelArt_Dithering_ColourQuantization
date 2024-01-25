@@ -1,11 +1,13 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine.UI;
 
 [ExecuteInEditMode]
 public class DitherColourImageEffect : MonoBehaviour
 {
     [SerializeField] Material ditherMaterial;
+
     [SerializeField] [Range(2, 255)] int ColourRange = 2;
     [SerializeField] [Range(0.0f, 10.0f)] int DitherSpread = 1;
 
@@ -17,29 +19,34 @@ public class DitherColourImageEffect : MonoBehaviour
 
     [SerializeField] private StatsDisplay statsDisplay;
 
+
+    [SerializeField] Material paletteSwapMaterial;
+    [SerializeField] private bool ApplyPaletteSwap = false;
+
     void OnRenderImage(RenderTexture source, RenderTexture destination)
     {
         var width = source.width >> downSampleAmount;
         var height = source.height >> downSampleAmount;
 
         // source.filterMode = FilterMode.Point;
-        var tempTexture = RenderTexture.GetTemporary(width, height);
-        tempTexture.filterMode = filterMode;
-        Graphics.Blit(source, tempTexture);
+        var downscaleRenderTexture = RenderTexture.GetTemporary(width, height);
+        var ditherRenderTexture = RenderTexture.GetTemporary(width, height);
+        downscaleRenderTexture.filterMode = filterMode;
+        ditherRenderTexture.filterMode = filterMode;
+        // Apply downsample
+        Graphics.Blit(source, downscaleRenderTexture);
 
-        if(!AddDither)
-        {
-            statsDisplay.UpdateText((int)Mathf.Pow(255, 3), DitherSpread, downSampleAmount);
-            Graphics.Blit(tempTexture, destination);
-            return;
-        }
 
         ditherMaterial.SetInt("_ColourRange", ColourRange);
         ditherMaterial.SetFloat("_Spread", DitherSpread);
+        // Apply dither and colour quantization
+        Graphics.Blit(downscaleRenderTexture, destination, ditherMaterial);
+        return;
+        // Apply palette swap
+        Graphics.Blit(ditherRenderTexture, destination, paletteSwapMaterial);
         
-        Graphics.Blit(tempTexture, destination, ditherMaterial);
-
-        tempTexture.Release();
+        downscaleRenderTexture.Release();
+        ditherRenderTexture.Release();
 
         statsDisplay.UpdateText((int)Mathf.Pow(ColourRange, 3), DitherSpread, downSampleAmount);
     }

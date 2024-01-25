@@ -707,13 +707,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c371d3b5d70abe409ecc0bbd97fcc94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ditherMaterial: {fileID: 2100000, guid: b790fa94afe86654cbd3471f4fb03da3, type: 2}
+  ditherMaterial: {fileID: 2100000, guid: ec2640db32e284c4e9c32f4083770c69, type: 2}
   ColourRange: 2
   DitherSpread: 1
   downSampleAmount: 2
   AddDither: 1
   filterMode: 0
   statsDisplay: {fileID: 1554418802}
+  paletteSwapMaterial: {fileID: 2100000, guid: ca90032f8f14f04478d1e86dd7c709b0, type: 2}
+  ApplyPaletteSwap: 1
 --- !u!114 &1554418802
 MonoBehaviour:
   m_ObjectHideFlags: 0
