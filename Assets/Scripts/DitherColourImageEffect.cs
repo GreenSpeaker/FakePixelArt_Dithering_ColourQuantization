@@ -21,44 +21,57 @@ public class DitherColourImageEffect : MonoBehaviour
 
 
     [SerializeField] Material paletteSwapMaterial;
+
+    [SerializeField] private bool ApplyDownsample = false;
+    [SerializeField] private bool ApplyDithering = false;
     [SerializeField] private bool ApplyPaletteSwap = false;
+
 
     void OnRenderImage(RenderTexture source, RenderTexture destination)
     {
-        var width = source.width >> downSampleAmount;
-        var height = source.height >> downSampleAmount;
+        var width = source.width >> (ApplyDownsample ? downSampleAmount : 0);
+        var height = source.height >> (ApplyDownsample ? downSampleAmount : 0);
 
-        // source.filterMode = FilterMode.Point;
-        var downscaleRenderTexture = RenderTexture.GetTemporary(width, height);
-        var ditherRenderTexture = RenderTexture.GetTemporary(width, height);
+        var temp = RenderTexture.GetTemporary(width, height);
+        temp.filterMode = filterMode;
 
-        downscaleRenderTexture.filterMode = filterMode;
         // Apply downsample
-        Graphics.Blit(source, downscaleRenderTexture);
+        Graphics.Blit(source, temp);
+        
+        if(ApplyDithering)
+        temp = ApplyDither(temp);
+
+        if(ApplyPaletteSwap)
+        temp = ApplyPalette(temp);
+
+        Graphics.Blit(temp, destination);
+
+        statsDisplay.UpdateText((int)Mathf.Pow(ColourRange, 3), DitherSpread, downSampleAmount);
+    }
+
+    RenderTexture ApplyDither(RenderTexture input)
+    {
+        var tempRenderTexture = RenderTexture.GetTemporary(input.width, input.height);
+        tempRenderTexture.filterMode = filterMode;
 
         ditherMaterial.SetInt("_ColourRange", ColourRange);
         ditherMaterial.SetFloat("_Spread", DitherSpread);
-        if (!ApplyPaletteSwap)
-        {
-            // Apply dither and colour quantization
-            Graphics.Blit(downscaleRenderTexture, destination, ditherMaterial);
-            return;
-        }
-        else
-        {
-            ditherRenderTexture.filterMode = filterMode;
 
-            // Apply dither and colour quantization
-            Graphics.Blit(downscaleRenderTexture, ditherRenderTexture, ditherMaterial);
+        // Apply dither and colour quantization
+        Graphics.Blit(input, tempRenderTexture, ditherMaterial);
 
-            // Apply palette swap
-            Graphics.Blit(ditherRenderTexture, destination, paletteSwapMaterial);
+        return tempRenderTexture;
+    }
 
-            downscaleRenderTexture.Release();
-            ditherRenderTexture.Release();
-        }
+    RenderTexture ApplyPalette(RenderTexture input)
+    {
+        var tempRenderTexture = RenderTexture.GetTemporary(input.width, input.height);
+        tempRenderTexture.filterMode = filterMode;
 
-        statsDisplay.UpdateText((int)Mathf.Pow(ColourRange, 3), DitherSpread, downSampleAmount);
+        // Apply dither and colour quantization
+        Graphics.Blit(input, tempRenderTexture, paletteSwapMaterial);
+
+        return tempRenderTexture;
     }
 
     void OnValidate()

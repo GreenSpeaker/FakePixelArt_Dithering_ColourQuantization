@@ -193,7 +193,7 @@ MonoBehaviour:
 
     DownSampling:
 
-    2'
+    4'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -710,12 +710,14 @@ MonoBehaviour:
   ditherMaterial: {fileID: 2100000, guid: ec2640db32e284c4e9c32f4083770c69, type: 2}
   ColourRange: 2
   DitherSpread: 1
-  downSampleAmount: 2
-  AddDither: 1
+  downSampleAmount: 4
+  AddDither: 0
   filterMode: 0
   statsDisplay: {fileID: 1554418802}
-  paletteSwapMaterial: {fileID: 2100000, guid: ca90032f8f14f04478d1e86dd7c709b0, type: 2}
-  ApplyPaletteSwap: 1
+  paletteSwapMaterial: {fileID: 2100000, guid: 6225b6719322cdd4082fdac4be761afe, type: 2}
+  ApplyDownsample: 1
+  ApplyDithering: 1
+  ApplyPaletteSwap: 0
 --- !u!114 &1554418802
 MonoBehaviour:
   m_ObjectHideFlags: 0
