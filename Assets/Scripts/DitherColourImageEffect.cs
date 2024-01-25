@@ -83,8 +83,10 @@ public class DitherColourImageEffect : MonoBehaviour
             return;
         }
         statsDisplay.SetDisplayBoxActive(true);
+
         var availableColours =(int)Mathf.Pow(ApplyDithering ? ColourRange : 255, 3);
         availableColours = ApplyPaletteSwap ? 4 : availableColours;
+        
         statsDisplay.UpdateText(availableColours, DitherSpread, downSampleAmount);
     }
 
