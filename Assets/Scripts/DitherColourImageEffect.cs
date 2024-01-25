@@ -1,7 +1,9 @@
 using UnityEngine;
+using System.Collections.Generic;
+using System.Linq;
 
 [ExecuteInEditMode]
-public class ImageEffect : MonoBehaviour
+public class DitherColourImageEffect : MonoBehaviour
 {
     [SerializeField] Material ditherMaterial;
     [SerializeField] [Range(2, 255)] int ColourRange = 2;
@@ -14,7 +16,6 @@ public class ImageEffect : MonoBehaviour
     [SerializeField] private FilterMode filterMode;
 
     [SerializeField] private StatsDisplay statsDisplay;
-
 
     void OnRenderImage(RenderTexture source, RenderTexture destination)
     {
@@ -35,6 +36,7 @@ public class ImageEffect : MonoBehaviour
 
         ditherMaterial.SetInt("_ColourRange", ColourRange);
         ditherMaterial.SetFloat("_Spread", DitherSpread);
+        
         Graphics.Blit(tempTexture, destination, ditherMaterial);
 
         tempTexture.Release();
