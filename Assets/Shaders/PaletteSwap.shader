@@ -1,7 +1,8 @@
 Shader "Custom/PaletteSwap"
 {
     Properties
-    {
+    {        
+        _MainTex ("Texture", 2D) = "white" {}
         _PaletteTexture ("Palette Texture", 2D) = "white" {}
     }
     SubShader

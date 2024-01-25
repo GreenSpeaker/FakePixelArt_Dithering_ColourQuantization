@@ -40,8 +40,7 @@ public class DitherColourImageEffect : MonoBehaviour
         ditherMaterial.SetInt("_ColourRange", ColourRange);
         ditherMaterial.SetFloat("_Spread", DitherSpread);
         // Apply dither and colour quantization
-        Graphics.Blit(downscaleRenderTexture, destination, ditherMaterial);
-        return;
+        Graphics.Blit(downscaleRenderTexture, ditherRenderTexture, ditherMaterial);
         // Apply palette swap
         Graphics.Blit(ditherRenderTexture, destination, paletteSwapMaterial);
         
