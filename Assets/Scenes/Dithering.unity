@@ -193,7 +193,7 @@ MonoBehaviour:
 
     DownSampling:
 
-    4'
+    3'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -543,6 +543,7 @@ GameObject:
   - component: {fileID: 1316372272}
   - component: {fileID: 1316372274}
   - component: {fileID: 1316372273}
+  - component: {fileID: 1316372275}
   m_Layer: 5
   m_Name: Backing
   m_TagString: Untagged
@@ -609,6 +610,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1316372271}
   m_CullTransparentMesh: 1
+--- !u!114 &1316372275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1316372271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a70df322fe4d964099a6fc1cc0c6181, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  backing: {fileID: 1316372273}
+  text: {fileID: 41958140}
 --- !u!1 &1554418797
 GameObject:
   m_ObjectHideFlags: 0
@@ -620,7 +635,6 @@ GameObject:
   - component: {fileID: 1554418800}
   - component: {fileID: 1554418799}
   - component: {fileID: 1554418801}
-  - component: {fileID: 1554418802}
   - component: {fileID: 1554418798}
   m_Layer: 0
   m_Name: Main Camera
@@ -708,29 +722,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ditherMaterial: {fileID: 2100000, guid: ec2640db32e284c4e9c32f4083770c69, type: 2}
+  paletteSwapMaterial: {fileID: 2100000, guid: 6225b6719322cdd4082fdac4be761afe, type: 2}
+  downSampleAmount: 3
   ColourRange: 2
   DitherSpread: 1
-  downSampleAmount: 4
-  AddDither: 0
   filterMode: 0
-  statsDisplay: {fileID: 1554418802}
-  paletteSwapMaterial: {fileID: 2100000, guid: 6225b6719322cdd4082fdac4be761afe, type: 2}
+  statsDisplay: {fileID: 1316372275}
+  ShowDisplayBox: 1
   ApplyDownsample: 1
   ApplyDithering: 1
-  ApplyPaletteSwap: 0
---- !u!114 &1554418802
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1554418797}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a70df322fe4d964099a6fc1cc0c6181, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  text: {fileID: 41958140}
+  ApplyPaletteSwap: 1
 --- !u!1 &1580607931
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,22 +6,23 @@ using UnityEngine.UI;
 [ExecuteInEditMode]
 public class DitherColourImageEffect : MonoBehaviour
 {
+    [Header("Materials")]
     [SerializeField] Material ditherMaterial;
+    [SerializeField] Material paletteSwapMaterial;
 
+    [Header("Downsample settings")]
+    [SerializeField][Range(0, 10)] int downSampleAmount = 2;
+
+    [Header("Dither and Colour Quantization Settings")]
     [SerializeField] [Range(2, 255)] int ColourRange = 2;
     [SerializeField] [Range(0.0f, 10.0f)] int DitherSpread = 1;
 
-    [SerializeField][Range(0, 10)] int downSampleAmount = 2;
-
-    [SerializeField] private bool AddDither;
-
+    [Header("General")]
     [SerializeField] private FilterMode filterMode;
-
     [SerializeField] private StatsDisplay statsDisplay;
-
-
-    [SerializeField] Material paletteSwapMaterial;
-
+    [SerializeField] private bool ShowDisplayBox = true;
+    
+    [Header("Apply Effects?")]
     [SerializeField] private bool ApplyDownsample = false;
     [SerializeField] private bool ApplyDithering = false;
     [SerializeField] private bool ApplyPaletteSwap = false;
@@ -46,7 +47,7 @@ public class DitherColourImageEffect : MonoBehaviour
 
         Graphics.Blit(temp, destination);
 
-        statsDisplay.UpdateText((int)Mathf.Pow(ColourRange, 3), DitherSpread, downSampleAmount);
+        UpdateDisplayText();
     }
 
     RenderTexture ApplyDither(RenderTexture input)
@@ -74,8 +75,21 @@ public class DitherColourImageEffect : MonoBehaviour
         return tempRenderTexture;
     }
 
+    void UpdateDisplayText()
+    {
+        if(!ShowDisplayBox)
+        {
+            statsDisplay.SetDisplayBoxActive(false);
+            return;
+        }
+        statsDisplay.SetDisplayBoxActive(true);
+        var availableColours =(int)Mathf.Pow(ApplyDithering ? ColourRange : 255, 3);
+        availableColours = ApplyPaletteSwap ? 4 : availableColours;
+        statsDisplay.UpdateText(availableColours, DitherSpread, downSampleAmount);
+    }
+
     void OnValidate()
-    {            
-        statsDisplay.UpdateText((int)Mathf.Pow(!AddDither ? 255 : ColourRange, 3), DitherSpread, downSampleAmount);
+    {
+        UpdateDisplayText();
     }
 }
