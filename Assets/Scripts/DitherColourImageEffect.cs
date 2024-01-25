@@ -31,21 +31,32 @@ public class DitherColourImageEffect : MonoBehaviour
         // source.filterMode = FilterMode.Point;
         var downscaleRenderTexture = RenderTexture.GetTemporary(width, height);
         var ditherRenderTexture = RenderTexture.GetTemporary(width, height);
+
         downscaleRenderTexture.filterMode = filterMode;
-        ditherRenderTexture.filterMode = filterMode;
         // Apply downsample
         Graphics.Blit(source, downscaleRenderTexture);
 
-
         ditherMaterial.SetInt("_ColourRange", ColourRange);
         ditherMaterial.SetFloat("_Spread", DitherSpread);
-        // Apply dither and colour quantization
-        Graphics.Blit(downscaleRenderTexture, ditherRenderTexture, ditherMaterial);
-        // Apply palette swap
-        Graphics.Blit(ditherRenderTexture, destination, paletteSwapMaterial);
-        
-        downscaleRenderTexture.Release();
-        ditherRenderTexture.Release();
+        if (!ApplyPaletteSwap)
+        {
+            // Apply dither and colour quantization
+            Graphics.Blit(downscaleRenderTexture, destination, ditherMaterial);
+            return;
+        }
+        else
+        {
+            ditherRenderTexture.filterMode = filterMode;
+
+            // Apply dither and colour quantization
+            Graphics.Blit(downscaleRenderTexture, ditherRenderTexture, ditherMaterial);
+
+            // Apply palette swap
+            Graphics.Blit(ditherRenderTexture, destination, paletteSwapMaterial);
+
+            downscaleRenderTexture.Release();
+            ditherRenderTexture.Release();
+        }
 
         statsDisplay.UpdateText((int)Mathf.Pow(ColourRange, 3), DitherSpread, downSampleAmount);
     }
