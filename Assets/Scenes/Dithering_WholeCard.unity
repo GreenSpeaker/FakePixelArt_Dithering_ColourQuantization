@@ -183,17 +183,17 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Colours on screen:
 
-    64
+    4
 
 
     Dither Spread:
 
-    1
+    0
 
 
     DownSampling:
 
-    3'
+    1'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -737,16 +737,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ditherMaterial: {fileID: 2100000, guid: ec2640db32e284c4e9c32f4083770c69, type: 2}
-  paletteSwapMaterial: {fileID: 2100000, guid: 6225b6719322cdd4082fdac4be761afe, type: 2}
-  downSampleAmount: 3
-  ColourRange: 4
-  DitherSpread: 1
+  paletteSwapMaterial: {fileID: 2100000, guid: e2d692c7a3292f64e9c6b59cef9d3c57, type: 2}
+  downSampleAmount: 1
+  ColourRange: 255
+  DitherSpread: 0
   filterMode: 0
   statsDisplay: {fileID: 1316372275}
   ShowDisplayBox: 1
   ApplyDownsample: 1
   ApplyDithering: 1
-  ApplyPaletteSwap: 0
+  ApplyPaletteSwap: 1
 --- !u!1 &1580607931
 GameObject:
   m_ObjectHideFlags: 0

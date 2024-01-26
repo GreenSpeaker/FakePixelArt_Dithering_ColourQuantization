@@ -1,4 +1,4 @@
-Shader "Custom/PaletteSwap"
+Shader "Custom/PaletteSwapFromGreyScale"
 {
     Properties
     {        
