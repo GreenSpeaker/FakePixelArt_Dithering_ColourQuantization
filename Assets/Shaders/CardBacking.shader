@@ -8,7 +8,7 @@ Shader "Custom/Card/Backing"
     {
         Tags 
         { 
-            "RenderType"="Opaque" 
+            "RenderType"="Transparent" 
             "Queue"="Geometry+1"
         }
         

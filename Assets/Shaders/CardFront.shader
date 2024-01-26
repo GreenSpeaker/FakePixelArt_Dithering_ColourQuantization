@@ -8,7 +8,7 @@ Shader "Custom/Card/Front"
     {
         Tags 
         { 
-            "RenderType"="Opaque" 
+            "RenderType"="Transparent" 
             "Queue"="Geometry"
         }
         
