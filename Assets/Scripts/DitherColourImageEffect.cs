@@ -47,6 +47,8 @@ public class DitherColourImageEffect : MonoBehaviour
 
         Graphics.Blit(temp, destination);
 
+        temp.Release();
+
         UpdateDisplayText();
     }
 
@@ -61,6 +63,8 @@ public class DitherColourImageEffect : MonoBehaviour
         // Apply dither and colour quantization
         Graphics.Blit(input, tempRenderTexture, ditherMaterial);
 
+        input.Release();
+
         return tempRenderTexture;
     }
 
@@ -71,6 +75,8 @@ public class DitherColourImageEffect : MonoBehaviour
 
         // Apply dither and colour quantization
         Graphics.Blit(input, tempRenderTexture, paletteSwapMaterial);
+
+        input.Release();
 
         return tempRenderTexture;
     }
