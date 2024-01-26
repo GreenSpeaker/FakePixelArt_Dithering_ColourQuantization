@@ -183,7 +183,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Colours on screen:
 
-    16581375
+    64
 
 
     Dither Spread:
@@ -739,13 +739,13 @@ MonoBehaviour:
   ditherMaterial: {fileID: 2100000, guid: ec2640db32e284c4e9c32f4083770c69, type: 2}
   paletteSwapMaterial: {fileID: 2100000, guid: 6225b6719322cdd4082fdac4be761afe, type: 2}
   downSampleAmount: 3
-  ColourRange: 2
+  ColourRange: 4
   DitherSpread: 1
   filterMode: 0
   statsDisplay: {fileID: 1316372275}
   ShowDisplayBox: 1
-  ApplyDownsample: 0
-  ApplyDithering: 0
+  ApplyDownsample: 1
+  ApplyDithering: 1
   ApplyPaletteSwap: 0
 --- !u!1 &1580607931
 GameObject:
