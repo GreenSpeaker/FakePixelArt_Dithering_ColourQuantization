@@ -52,9 +52,9 @@ Shader "Custom/PaletteSwapEachColour"
                 // sample the texture
                 fixed4 col = tex2D(_MainTex, i.uv);
                 
-                col.r = saturate(tex2D(_PaletteRed, float2(col.r, 0)));
-                col.g = saturate(tex2D(_PaletteGreen, float2(col.g, 0)));
-                col.b = saturate(tex2D(_PaletteBlue, float2(col.b, 0)));
+                col.r = saturate(tex2D(_PaletteRed, float2(col.r, 0))).r;
+                col.g = saturate(tex2D(_PaletteGreen, float2(col.g, 0))).g;
+                col.b = saturate(tex2D(_PaletteBlue, float2(col.b, 0))).b;
 
                 return col;
             }
